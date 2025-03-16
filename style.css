@@ -34,6 +34,23 @@ nav {
     border-radius: 0 0 5px 5px;
 }
 
+@media (max-width: 768px) { /* For tablets & phones */
+  nav {
+    flex-direction: column; /* Stack items vertically */
+    text-align: center;
+  }
+
+  nav div {
+    flex-direction: column; /* Stack links */
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 16px;
+    padding: 8px;
+  }
+}
+
 
 
 nav a {
