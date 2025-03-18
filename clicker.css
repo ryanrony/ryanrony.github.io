@@ -1,0 +1,218 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background: black;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Hide scrollbar by default */
+}
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    position: relative;
+}
+
+.click-button {
+    font-size: 96px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.1s ease-in-out, filter 0.1s ease-in-out;
+    text-shadow: 0 0 20px #000000, 0 0 5px #000000; /* Glow effect */
+
+}
+
+.click-button:active {
+    transform: scale(0.9); /* Punch effect */
+    filter: brightness(1.2); /* Brighten the button */
+}
+
+.counter {
+    font-size: 48px;
+    margin-top: 20px;
+
+}
+
+.fuzzy-overlay {
+    position: absolute;
+    inset: -200%;
+    background-image: url("noise.png");
+    opacity: 25%;
+    z-index: 0;
+    animation: shift 0.2s linear infinite both;
+}
+
+@keyframes shift {
+    0% {
+        transform: translateX(10%) translateY(10%);
+    }
+
+    100% {
+        transform: translateX(-10%) translateY(-10%);
+    }
+}
+
+/* Screen shake effect */
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-5px, 5px); }
+    50% { transform: translate(5px, -5px); }
+    75% { transform: translate(-5px, -5px); }
+    100% { transform: translate(0, 0); }
+}
+
+.shake {
+    animation: shake 0.1s ease-in-out; /* Smoother shake */
+}
+
+/* Pixel-like particle effect */
+.particle {
+    position: absolute;
+    width: 8px; /* Fixed size for pixelated look */
+    height: 8px; /* Fixed size for pixelated look */
+    background-color: rgb(96, 96, 96); /* Default color */
+    pointer-events: none;
+    opacity: 1;
+    animation: particle-fall 1s ease-out forwards;
+    z-index: 10;
+    image-rendering: pixelated; /* Ensure pixelated rendering */
+    image-rendering: crisp-edges; /* Ensure crisp edges */
+    border: 1px solid transparent; /* Optional: Add a border for sharper edges */
+}
+
+/* Red particle variant */
+.particle.red {
+    background-color: rgb(0, 0, 0);
+}
+
+@keyframes particle-fall {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Red explosion effect */
+.explosion-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ff0000; /* Red color */
+    pointer-events: none;
+    opacity: 1;
+    animation: explosion-fall 1s ease-out forwards;
+    z-index: 20;
+}
+
+@keyframes explosion-fall {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* New effect: Screen ripple */
+.screen-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgb(255, 0, 0); /* Red ripple */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 30;
+    animation: ripple 0.5s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 200vw;
+        height: 200vw;
+        opacity: 0;
+    }
+}
+
+/* Intro text styling */
+.intro-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 300px;
+    font-weight: bold;
+    color: white; /* White text */
+    text-shadow: 0 0 10px #ffffff, 0 0 10px #ffffff; /* Glow effect */
+    opacity: 1;
+    z-index: 50;
+}
+
+/* Fade animation for "TV" */
+@keyframes fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.fade-out {
+    animation: fade-out 0.2s ease-out forwards;
+}
+
+/* (Previous CSS remains the same) */
+
+/* Keep Going text styling */
+.keep-going-text {
+    position: absolute;
+    top: 10%; /* Position at the top of the screen */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px; /* Smaller than intro text */
+    font-weight: bold;
+    color: rgb(255, 0, 0); /* White text */
+    text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000; /* Glow effect */
+    opacity: 1;
+    z-index: 50;
+}
+
+/* Fade animation for "KEEP GOING" */
+@keyframes fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.fade-out {
+    animation: fade-out 0.3s ease-out forwards;
+}
