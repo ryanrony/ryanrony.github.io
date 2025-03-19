@@ -4,6 +4,9 @@ const clickableElement = document.getElementById('clickable');
 const counterElement = document.getElementById('counter');
 const screenElement = document.getElementById('screen');
 
+// Show intro text 1.5 seconds after the page loads
+setTimeout(showIntroText, 750); // 1500 milliseconds = 1.5 seconds
+
 // Function to display intro text
 function showIntroText() {
     const words = ["PUNCH", "THE", "TV"];
@@ -34,8 +37,6 @@ function showIntroText() {
     });
 }
 
-// Show intro text when the page loads
-showIntroText();
 
 // Function to display "KEEP GOING" text
 // JavaScript for the clicker game
@@ -279,3 +280,35 @@ function triggerScreenRipple(x, y) {
         ripple.remove();
     }, 500);
 }
+
+
+// Variables for CPS calculation
+let clickTimes = []; // Array to store timestamps of clicks
+const cpsValueElement = document.getElementById('cps-value');
+const datetimeValueElement = document.getElementById('datetime-value');
+
+// Function to update clicks per second
+function updateCPS() {
+    const now = Date.now();
+    const oneSecondAgo = now - 1000;
+
+    // Filter clicks that happened in the last second
+    clickTimes = clickTimes.filter(time => time > oneSecondAgo);
+
+    // Update CPS display
+    cpsValueElement.textContent = clickTimes.length;
+}
+
+// Function to update date and time in a retro format
+
+
+// Update CPS and date/time every second
+setInterval(() => {
+    updateCPS();
+    updateDateTime();
+}, 1000);
+
+// Add click event listener to track clicks
+clickableElement.addEventListener('click', function () {
+    clickTimes.push(Date.now()); // Record the time of the click
+});
