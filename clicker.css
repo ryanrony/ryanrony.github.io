@@ -216,3 +216,44 @@ body {
 .fade-out {
     animation: fade-out 0.3s ease-out forwards;
 }
+
+#stats {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-family: 'Press Start 2P', cursive; /* Retro pixel font */
+    color: #ffffff; /* Green retro text */
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff; /* Glow effect */
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    padding: 10px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #000000;
+    z-index: 1000;
+}
+
+#cps, #datetime {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+#cps-value, #datetime-value {
+    color: #ffffff; /* Pink for contrast */
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff; /* Glow effect */
+}
+
+/* Add a CRT monitor scanline effect */
+#stats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+}
